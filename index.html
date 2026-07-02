@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora Básica</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    *{
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora Básica</title>
+
+<style>
+*{
     margin:0;
     padding:0;
     box-sizing:border-box;
@@ -15,20 +14,20 @@
 }
 
 body{
-    background:linear-gradient(135deg,#1e3c72,#2a5298);
     display:flex;
     justify-content:center;
     align-items:center;
     height:100vh;
+    background:linear-gradient(135deg,#1e3c72,#2a5298);
 }
 
 .contenedor{
-    background:white;
-    width:350px;
+    background:#fff;
     padding:30px;
+    width:350px;
     border-radius:15px;
-    text-align:center;
     box-shadow:0 10px 20px rgba(0,0,0,.3);
+    text-align:center;
 }
 
 h1{
@@ -54,11 +53,11 @@ input{
 
 button{
     padding:15px;
+    font-size:22px;
     border:none;
     border-radius:10px;
     background:#1e88e5;
     color:white;
-    font-size:22px;
     cursor:pointer;
     transition:.3s;
 }
@@ -69,7 +68,7 @@ button:hover{
 }
 
 h2{
-    margin-top:25px;
+    margin-top:20px;
 }
 
 #resultado{
@@ -78,11 +77,15 @@ h2{
     color:#2e7d32;
     font-weight:bold;
 }
+</style>
+
+</head>
+<body>
+
 <div class="contenedor">
-    <h1>Calculadora</h1>
+    <h1>Calculadora Básica</h1>
 
     <input type="number" id="num1" placeholder="Primer número">
-
     <input type="number" id="num2" placeholder="Segundo número">
 
     <div class="botones">
@@ -94,10 +97,59 @@ h2{
 
     <h2>Resultado:</h2>
     <p id="resultado">0</p>
-
 </div>
 
-<script src="script.js"></script>
+<script>
+function obtenerValores(){
+    let num1 = parseFloat(document.getElementById("num1").value);
+    let num2 = parseFloat(document.getElementById("num2").value);
+
+    if(isNaN(num1) || isNaN(num2)){
+        alert("Ingresa ambos números.");
+        return null;
+    }
+
+    return {num1, num2};
+}
+
+function mostrarResultado(resultado){
+    document.getElementById("resultado").textContent = resultado;
+}
+
+function sumar(){
+    let datos = obtenerValores();
+    if(datos){
+        mostrarResultado(datos.num1 + datos.num2);
+    }
+}
+
+function restar(){
+    let datos = obtenerValores();
+    if(datos){
+        mostrarResultado(datos.num1 - datos.num2);
+    }
+}
+
+function multiplicar(){
+    let datos = obtenerValores();
+    if(datos){
+        mostrarResultado(datos.num1 * datos.num2);
+    }
+}
+
+function dividir(){
+    let datos = obtenerValores();
+
+    if(datos){
+        if(datos.num2 === 0){
+            alert("No se puede dividir entre cero.");
+            return;
+        }
+
+        mostrarResultado(datos.num1 / datos.num2);
+    }
+}
+</script>
 
 </body>
 </html>
