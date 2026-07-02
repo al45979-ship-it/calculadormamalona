@@ -1,49 +1,44 @@
-function obtenerValores() {
-    let num1 = parseFloat(document.getElementById("num1").value);
-    let num2 = parseFloat(document.getElementById("num2").value);
-
-    if (isNaN(num1) || isNaN(num2)) {
-        alert("Ingresa ambos números.");
-        return null;
-    }
-
-    return { num1, num2 };
+body{
+    background-color: #d9d9d9;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-function mostrarResultado(resultado) {
-    document.getElementById("resultado").textContent = resultado;
+.calculadora{
+    width: 280px;
+    margin: 60px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 8px gray;
+    text-align: center;
 }
 
-function sumar() {
-    let datos = obtenerValores();
-    if (datos) {
-        mostrarResultado(datos.num1 + datos.num2);
-    }
+h2{
+    margin-bottom: 15px;
 }
 
-function restar() {
-    let datos = obtenerValores();
-    if (datos) {
-        mostrarResultado(datos.num1 - datos.num2);
-    }
+#pantalla{
+    width: 95%;
+    height: 40px;
+    font-size: 20px;
+    text-align: right;
+    margin-bottom: 15px;
 }
 
-function multiplicar() {
-    let datos = obtenerValores();
-    if (datos) {
-        mostrarResultado(datos.num1 * datos.num2);
-    }
+.botones{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 10px;
 }
 
-function dividir() {
-    let datos = obtenerValores();
+button{
+    height: 45px;
+    font-size: 18px;
+    cursor: pointer;
+}
 
-    if (datos) {
-        if (datos.num2 === 0) {
-            alert("No se puede dividir entre cero.");
-            return;
-        }
-
-        mostrarResultado(datos.num1 / datos.num2);
-    }
+.limpiar{
+    grid-column: span 4;
+    background: crimson;
+    color: white;
 }
