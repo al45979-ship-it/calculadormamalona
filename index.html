@@ -2,153 +2,96 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Calculadora Básica</title>
+<title>Calculadora</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
-}
-
 body{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-    background:linear-gradient(135deg,#1e3c72,#2a5298);
+    font-family: Arial;
+    text-align: center;
+    background: lightgray;
 }
 
-.contenedor{
-    background:#fff;
-    padding:30px;
-    width:350px;
-    border-radius:15px;
-    box-shadow:0 10px 20px rgba(0,0,0,.3);
-    text-align:center;
-}
-
-h1{
-    color:#1e3c72;
-    margin-bottom:20px;
+.calculadora{
+    width: 220px;
+    margin: 50px auto;
+    background: white;
+    padding: 15px;
+    border: 1px solid black;
 }
 
 input{
-    width:100%;
-    padding:12px;
-    margin:10px 0;
-    border:1px solid #ccc;
-    border-radius:8px;
-    font-size:18px;
-}
-
-.botones{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:10px;
-    margin-top:20px;
+    width: 190px;
+    height: 30px;
+    margin-bottom: 10px;
+    text-align: right;
+    font-size: 18px;
 }
 
 button{
-    padding:15px;
-    font-size:22px;
-    border:none;
-    border-radius:10px;
-    background:#1e88e5;
-    color:white;
-    cursor:pointer;
-    transition:.3s;
-}
-
-button:hover{
-    background:#1565c0;
-    transform:scale(1.05);
-}
-
-h2{
-    margin-top:20px;
-}
-
-#resultado{
-    margin-top:10px;
-    font-size:30px;
-    color:#2e7d32;
-    font-weight:bold;
+    width: 40px;
+    height: 40px;
+    margin: 2px;
+    font-size: 18px;
 }
 </style>
 
 </head>
 <body>
 
-<div class="contenedor">
-    <h1>Calculadora Básica</h1>
+<div class="calculadora">
 
-    <input type="number" id="num1" placeholder="Primer número">
-    <input type="number" id="num2" placeholder="Segundo número">
+<h2>Calculadora</h2>
 
-    <div class="botones">
-        <button onclick="sumar()">+</button>
-        <button onclick="restar()">−</button>
-        <button onclick="multiplicar()">×</button>
-        <button onclick="dividir()">÷</button>
-    </div>
+<input type="text" id="pantalla" readonly>
+<br>
 
-    <h2>Resultado:</h2>
-    <p id="resultado">0</p>
+<button onclick="agregar('7')">7</button>
+<button onclick="agregar('8')">8</button>
+<button onclick="agregar('9')">9</button>
+<button onclick="agregar('+')">+</button>
+
+<br>
+
+<button onclick="agregar('4')">4</button>
+<button onclick="agregar('5')">5</button>
+<button onclick="agregar('6')">6</button>
+<button onclick="agregar('-')">-</button>
+
+<br>
+
+<button onclick="agregar('1')">1</button>
+<button onclick="agregar('2')">2</button>
+<button onclick="agregar('3')">3</button>
+<button onclick="agregar('*')">*</button>
+
+<br>
+
+<button onclick="agregar('0')">0</button>
+<button onclick="agregar('.')">.</button>
+<button onclick="calcular()">=</button>
+<button onclick="agregar('/')">/</button>
+
+<br><br>
+
+<button onclick="limpiar()">C</button>
+
 </div>
 
 <script>
-function obtenerValores(){
-    var num1 = parseFloat(document.getElementById("num1").value);
-    var num2 = parseFloat(document.getElementById("num2").value);
 
-    if(isNaN(num1) || isNaN(num2)){
-        alert("Ingresa ambos números.");
-        return null;
-    }
-
-    return {num1, num2};
+function agregar(numero){
+    document.getElementById("pantalla").value += numero;
 }
 
-function mostrarResultado(resultado){
-    document.getElementById("resultado").textContent = resultado;
+function limpiar(){
+    document.getElementById("pantalla").value = "";
 }
 
-function sumar(){
-    var datos = obtenerValores();
-    if(datos){
-        mostrarResultado(datos.num1 + datos.num2);
-    }
+function calcular(){
+    var resultado = eval(document.getElementById("pantalla").value);
+    document.getElementById("pantalla").value = resultado;
 }
 
-function restar(){
-    var datos = obtenerValores();
-    if(datos){
-        mostrarResultado(datos.num1 - datos.num2);
-    }
-}
-
-function multiplicar(){
-    var datos = obtenerValores();
-    if(datos){
-        mostrarResultado(datos.num1 * datos.num2);
-    }
-}
-
-function dividir(){
-    var datos = obtenerValores();
-
-    if(datos){
-        if(datos.num2 === 0){
-            alert("No se puede dividir entre cero.");
-            return;
-        }
-
-        mostrarResultado(datos.num1 / datos.num2);
-    }
-}
 </script>
 
 </body>
